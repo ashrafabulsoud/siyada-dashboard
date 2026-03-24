@@ -1,5 +1,7 @@
+import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
+import client from './appwrite/config';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 
@@ -56,6 +58,10 @@ function AppRoutes() {
 }
 
 export default function App() {
+  useEffect(() => {
+    client.ping();
+  }, []);
+
   return (
     <BrowserRouter>
       <AuthProvider>
